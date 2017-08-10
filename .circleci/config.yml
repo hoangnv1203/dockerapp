@@ -17,3 +17,10 @@ jobs:
           command: |
             docker-compose up -d
             docker-compose run dockerapp python test.py
+      - run:
+          name: Push images to docker hub
+          command: |
+            TAG=0.111
+            docker build -t   hoangnv1203/circleci-demo-docker:111 
+            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD        
+            docker push hoangnv1203/circleci-demo-docker:111
